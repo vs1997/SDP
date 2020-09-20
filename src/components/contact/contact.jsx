@@ -1,22 +1,22 @@
-import React from 'react';
-import { Row, Col } from 'react-flexbox-grid';
-import './contact.scss';
-import * as emailjs from 'emailjs-com';
-import Title from '../ui-components/title/title';
-import ContactInfo from './contactInfo/contactInfo';
-import ContactSocial from './contactInfo/contactSocial';
-import Modal from '../contact-modal/Modal';
+import React from "react";
+import { Row, Col } from "react-flexbox-grid";
+import "./contact.scss";
+import * as emailjs from "emailjs-com";
+import Title from "../ui-components/title/title";
+import ContactInfo from "./contactInfo/contactInfo";
+import ContactSocial from "./contactInfo/contactSocial";
+import Modal from "../contact-modal/Modal";
 
-import contactme from '../../assets/contact/contactme.jpg';
+import contactme from "../../assets/contact/contactme.jpg";
 // import ContactBackground from '../../assets/contact/bg.png';
 
 class Contact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      email: '',
-      message: '',
+      name: "",
+      email: "",
+      message: "",
       sending: false,
       successModal: false,
       errorModal: false,
@@ -39,12 +39,12 @@ class Contact extends React.Component {
     };
 
     // YOUR EMAIL.JS API KEY IN FORMAT user_xxxxxxxxxxxxxxxxxx
-    let API_KEY = '';
+    let API_KEY = "";
 
     // YOUR EMAIL.JS TEMPLATE ID
-    let TEMPLATE_ID = '';
+    let TEMPLATE_ID = "";
 
-    emailjs.send('default_service', TEMPLATE_ID, template_params, API_KEY).then(
+    emailjs.send("default_service", TEMPLATE_ID, template_params, API_KEY).then(
       function (response) {
         if (response.status === 200) {
           self.showSuccessModal();
@@ -70,7 +70,7 @@ class Contact extends React.Component {
   };
   // RESET CONTACT FORM
   resetForm() {
-    this.setState({ name: '', email: '', message: '' });
+    this.setState({ name: "", email: "", message: "" });
   }
   // CLOSE ALL MODALS
   closeModal = () => {
@@ -78,48 +78,32 @@ class Contact extends React.Component {
   };
 
   resetForm = () => {
-    this.setState({ name: '', email: '', message: '' });
+    this.setState({ name: "", email: "", message: "" });
   };
 
   render() {
-    let submitButtonRender = (
-      <div className='small__button'>
-        <button aria-label='send message' type='submit' value='Send Message'>
-          Send Message
-        </button>
-      </div>
-    );
-    if (this.state.sending) {
-      submitButtonRender = (
-        <div className='small__button sending-btn'>
-          <div className='flex-center'>
-            <div className='sbl-circ'></div>
-          </div>
-        </div>
-      );
-    }
     let modalRender = null;
     if (this.state.successModal) {
-      modalRender = <Modal closeModal={this.closeModal} status='success' />;
+      modalRender = <Modal closeModal={this.closeModal} status="success" />;
     } else if (this.state.errorModal) {
-      modalRender = <Modal closeModal={this.closeModal} status='error' />;
+      modalRender = <Modal closeModal={this.closeModal} status="error" />;
     }
     return (
-      <div id='contact'>
+      <div id="contact">
         {modalRender}
-        <div className='wrapper'>
-          <Title title='CONTACT ME.' />
-          <p className='font12'>Let's start your project with me.</p>
+        <div className="wrapper">
+          <Title title="Get in touch" />
+          <p className="font20">Let's start your project with me.</p>
 
-          <Row className='padding40'>
+          <Row className="padding40">
             <Col md={12} lg={6}>
-              <a className='btn' href='mailto:rempire230@gmail.com'>
+              <a className="btn" href="mailto:rempire230@gmail.com">
                 CONTACT ME
               </a>
             </Col>
             <Col md={12} lg={6}>
-              <div className='flex-center'>
-                <img src={contactme} alt='contact background' />
+              <div className="flex-center">
+                <img src={contactme} alt="contact background" />
               </div>
             </Col>
           </Row>
